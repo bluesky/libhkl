@@ -6,6 +6,9 @@ Build the *hkl*  C library (described here as
 [conda-forge](https://anaconda.org/conda-forge/hkl) using the
 [hkl-feedstock](https://github.com/conda-forge/hkl-feedstock).
 
+TODO: Must rebuild these with newer package versions outside of github actions.
+See code in https://github.com/prjemian/docker-ideaspace/tree/main/hkl-3357.
+
 ## libhkl-v5.0.0.3001-x86_64.tar.gz
 
 package | version

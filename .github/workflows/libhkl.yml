@@ -1,0 +1,20 @@
+name: Build libhkl library
+
+on: push
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+
+    build:
+      name: build job
+      runs-on: ubuntu-latest
+
+      steps:
+        -name: Diagnostics
+        run: |
+            apt-cache show gobject-introspection
+            apt-cache show libgsl-dev
+            cat /etc/os-release

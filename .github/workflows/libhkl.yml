@@ -2,6 +2,11 @@ name: Build libhkl library
 
 on: push
 
+# TODO: define symbols
+# https://repo.or.cz/hkl.git
+# v5.0.0.3001
+# v5.0.0.3357
+
 defaults:
   run:
     shell: bash -l {0}
@@ -47,4 +52,48 @@ jobs:
         m4 \
         make \
         pkg-config
+        #
+        #  not in ubuntu-20.04
         #         libcglm-dev \
+
+    - name: Get source
+      run: |
+        # TODO: use symbols
+        git clone https://repo.or.cz/hkl.git
+        cd hkl
+        git checkout --detach v5.0.0.3001  # 3357
+
+    - name: Compile
+      run: |
+        # TODO: add version info, somehow
+        set -e
+        export PREFIX=/opt/hkl
+        cd hkl
+        #
+        # don't build the documentation
+        # sed removes any lines containing the described text
+        sed -i '/gtk-doc/d' ./configure.ac
+        sed -i '/GTK_DOC_CHECK/d' ./configure.ac
+        sed -i '/Documentation/d' ./configure.ac
+        #
+        test -d m4 || mkdir m4
+        aclocal --print-ac-dir
+        autoreconf -ivf
+        #
+        ./configure \
+          --disable-static \
+          --disable-gui \
+          --disable-hkl-doc \
+          --enable-introspection=yes \
+          --prefix="${PREFIX}"
+        #
+        make -j ${CPU_COUNT}
+        make install
+
+    - name: archive
+      run: |
+        export PREFIX=/opt/hkl
+        cd "${PREFIX}"
+        tar czf ../libhdf.tar.gz ./*/
+        # TODO: save this tar file
+        

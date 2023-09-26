@@ -1,0 +1,100 @@
+name: Build libhkl v5.0.0.3357 library
+
+on: push
+
+env:
+  REPO_URL: https://repo.or.cz/hkl.git
+  TAG: v5.0.0.3357
+  PREFIX: /opt/hkl
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+
+  v5_0_0_3357:
+    name: build job
+    runs-on: ubuntu-22.04
+
+    steps:
+
+    - name: Diagnostics
+      run: |
+        apt update
+        apt-cache show gobject-introspection  # | grep Version
+        apt-cache show libgsl-dev  # | grep Version
+        apt-cache show libcglm-dev  # | grep Version
+        apt-cache show libglm-dev  # | grep Version
+        cat /etc/os-release
+        which git
+        which make
+        which autoconf
+        # gobject-introspection=1.72.0-1
+        # libgsl-dev=2.7.1+dfsg-3
+
+    - name: Development tools
+      run: |
+        DEBIAN_FRONTEND=noninteractive sudo apt-get install -y  \
+        apt-utils \
+        autoconf \
+        autoconf-archive \
+        automake \
+        build-essential \
+        git \
+        gobject-introspection=1.72.0-1 \
+        libgsl-dev=2.7.1+dfsg-3 \
+        libcglm-dev \
+        libgirepository1.0-dev \
+        libglib2.0-dev \
+        libhdf5-dev \
+        libtool \
+        m4 \
+        make \
+        pkg-config
+
+    - name: Get source
+      run: |
+        git clone "${REPO_URL}"
+        cd hkl
+        git checkout --detach "${TAG}"
+
+    - name: Compile
+      run: |
+        set -e
+        cd hkl
+        #
+        # add version info (splice into the include file)
+        sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${TAG}"'"' hkl.h
+        #
+        # don't build the documentation
+        # sed removes any lines containing the described text
+        sed -i '/gtk-doc/d' ./configure.ac
+        sed -i '/GTK_DOC_CHECK/d' ./configure.ac
+        sed -i '/Documentation/d' ./configure.ac
+        #
+        test -d m4 || mkdir m4
+        aclocal --print-ac-dir
+        autoreconf -ivf
+        #
+        ./configure \
+          --disable-static \
+          --disable-gui \
+          --disable-hkl-doc \
+          --enable-introspection=yes \
+          --prefix="${PREFIX}"
+        #
+        make -j ${CPU_COUNT}
+        make install
+
+    - name: archive
+      run: |
+        cd "${PREFIX}"
+        echo "${HOME}"
+        tar czf "/opt/libhkl.tar.gz" ./*/
+
+    - name: Save Archive as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: libhkl-${{ env.TAG }}.tar.gz
+        path: "/opt/libhkl.tar.gz"

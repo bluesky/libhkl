@@ -9,25 +9,31 @@ Build the *hkl*  C library (described here as
 TODO: Must rebuild these with newer package versions outside of github actions.
 See code in https://github.com/prjemian/docker-ideaspace/tree/main/hkl-3357.
 
+gobject-introspection version | maximum Python version
+--- | ---
+1.64 | py38
+1.66.1 | py39
+1.72.0 | py310
+
 ## libhkl-v5.0.0.3001-x86_64.tar.gz
 
 package | version
 --- | ---
-sha256 | `0da07cbc3a4421c35d8478696dbd383d4e14d2212ffb919636db245799720f2d`
-built on | GitHub Actions workflow
+sha256 | `5c1766a319ef59309bd2f25994fdc1f007c6c62a3441da71373609e493a79110`
+built on | [Docker](https://github.com/prjemian/docker-ideaspace/tree/main/hkl-3357)
 architecture | amd64
-OS | ubuntu-20.04
-`gobject-introspection` | 1.64.0-2
-`libgsl-dev` | 2.5+dfsg-6build1
-`libglm-dev` | 0.9.9.7+ds-1
+OS | debian:bullseye
+`gobject-introspection` | 1.66.1-1+b1
+`libgsl-dev` | 2.6+dfsg-2
+`libcglm-dev` | 0.7.9-1
 
 Requirements to build a conda-forge package:
 
 ```text
-    gobject-introspection =1.64
-    gsl =2.5
+    gobject-introspection =1.66.1
+    gsl =2.6
     pygobject
-    python <3.9
+    python <3.10
 ```
 
 NOTE: `gobject-introspection =1.64` is available on conda-forge for py36-py38.

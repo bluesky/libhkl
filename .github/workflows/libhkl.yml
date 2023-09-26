@@ -19,7 +19,32 @@ jobs:
         apt update
         apt-cache show gobject-introspection  # | grep Version
         apt-cache show libgsl-dev  # | grep Version
+        apt-cache show libcglm-dev  # | grep Version
+        apt-cache show libglm-dev  # | grep Version
         cat /etc/os-release
         which git
         which make
         which autoconf
+        # gobject-introspection=1.64.1-1~ubuntu20.04.1
+        # libgsl-dev=2.5+dfsg-6build1
+
+    - name: Development tools
+      run: |
+        DEBIAN_FRONTEND=noninteractive apt-get install -y  \
+        apt-utils \
+        autoconf \
+        autoconf-archive \
+        automake \
+        build-essential \
+        git \
+        gobject-introspection=1.64.1-1~ubuntu20.04.1 \
+        libgsl-dev=2.5+dfsg-6build1 \
+        libglm-dev \
+        libgirepository1.0-dev \
+        libglib2.0-dev \
+        libhdf5-dev \
+        libtool \
+        m4 \
+        make \
+        pkg-config
+        #         libcglm-dev \

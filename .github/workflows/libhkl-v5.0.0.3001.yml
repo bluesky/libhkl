@@ -99,5 +99,5 @@ jobs:
     - name: Save Archive as artifact
       uses: actions/upload-artifact@v3
       with:
-        name: libhkl-${{ env.TAG }}.tar.gz
+        name: libhkl-${{ env.TAG }}-x86_64.tar.gz
         path: "/opt/libhkl.tar.gz"

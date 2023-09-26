@@ -8,13 +8,18 @@ defaults:
 
 jobs:
 
-    build:
-      name: build job
-      runs-on: ubuntu-latest
+  build:
+    name: build job
+    runs-on: ubuntu-20.04
 
-      steps:
-        -name: Diagnostics
-        run: |
-            apt-cache show gobject-introspection
-            apt-cache show libgsl-dev
-            cat /etc/os-release
+    steps:
+
+    - name: Diagnostics
+      run: |
+        apt update  
+        apt-cache show gobject-introspection  # | grep Version
+        apt-cache show libgsl-dev  # | grep Version
+        cat /etc/os-release
+        which git
+        which make
+        which autoconf

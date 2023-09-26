@@ -16,7 +16,7 @@ jobs:
 
     - name: Diagnostics
       run: |
-        apt update  
+        apt update
         apt-cache show gobject-introspection  # | grep Version
         apt-cache show libgsl-dev  # | grep Version
         cat /etc/os-release

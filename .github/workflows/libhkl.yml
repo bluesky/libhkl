@@ -65,9 +65,11 @@ jobs:
 
     - name: Compile
       run: |
-        # TODO: add version info, somehow
         set -e
         cd hkl
+        #
+        # add version info (splice into the include file)
+        sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${TAG}"'"' hkl.h
         #
         # don't build the documentation
         # sed removes any lines containing the described text

@@ -4,8 +4,8 @@ on: push
 
 env:
   REPO_URL: https://repo.or.cz/hkl.git
-  TAG: v5.0.0.3001
-  # v5.0.0.3357
+  # TAG: v5.0.0.3001
+  TAG: v5.0.0.3357
   PREFIX: /opt/hkl
 
 defaults:

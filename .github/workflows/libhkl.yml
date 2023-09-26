@@ -94,6 +94,11 @@ jobs:
       run: |
         export PREFIX=/opt/hkl
         cd "${PREFIX}"
-        tar czf ../libhdf.tar.gz ./*/
-        # TODO: save this tar file
-        
+        echo "${HOME}"
+        tar czf "/opt/libhkl.tar.gz" ./*/
+
+    - name: Save Archive as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: libhkl-tarball
+        path: "/opt/libhkl.tar.gz"

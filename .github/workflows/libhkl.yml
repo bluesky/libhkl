@@ -2,10 +2,11 @@ name: Build libhkl library
 
 on: push
 
-# TODO: define symbols
-# https://repo.or.cz/hkl.git
-# v5.0.0.3001
-# v5.0.0.3357
+env:
+  REPO_URL: https://repo.or.cz/hkl.git
+  TAG: v5.0.0.3001
+  # v5.0.0.3357
+  PREFIX: /opt/hkl
 
 defaults:
   run:
@@ -58,16 +59,14 @@ jobs:
 
     - name: Get source
       run: |
-        # TODO: use symbols
-        git clone https://repo.or.cz/hkl.git
+        git clone "${REPO_URL}"
         cd hkl
-        git checkout --detach v5.0.0.3001  # 3357
+        git checkout --detach "${TAG}"
 
     - name: Compile
       run: |
         # TODO: add version info, somehow
         set -e
-        export PREFIX=/opt/hkl
         cd hkl
         #
         # don't build the documentation
@@ -92,7 +91,6 @@ jobs:
 
     - name: archive
       run: |
-        export PREFIX=/opt/hkl
         cd "${PREFIX}"
         echo "${HOME}"
         tar czf "/opt/libhkl.tar.gz" ./*/

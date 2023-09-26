@@ -1,11 +1,10 @@
-name: Build libhkl library
+name: Build libhkl v5.0.0.3001 library
 
 on: push
 
 env:
   REPO_URL: https://repo.or.cz/hkl.git
-  # TAG: v5.0.0.3001
-  TAG: v5.0.0.3357
+  TAG: v5.0.0.3001
   PREFIX: /opt/hkl
 
 defaults:
@@ -14,7 +13,7 @@ defaults:
 
 jobs:
 
-  build:
+  v5_0_0_3001:
     name: build job
     runs-on: ubuntu-20.04
 

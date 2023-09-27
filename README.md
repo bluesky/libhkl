@@ -9,11 +9,14 @@ Build the *hkl*  C library (described here as
 TODO: Must rebuild these with newer package versions outside of github actions.
 See code in https://github.com/prjemian/docker-ideaspace/tree/main/hkl-3357.
 
-gobject-introspection version | maximum Python version
+gobject-introspection version | Python version
 --- | ---
-1.64 | py38
-1.66.1 | py39
-1.72.0 | py310
+1.64.1 | py36 - py38
+1.66.1 | py36 - py39
+1.72.0 | py37 - py310
+1.78.1 | py38 - py311
+
+build gobject-introspection and gsl from source
 
 ## libhkl-v5.0.0.3001-x86_64.tar.gz
 

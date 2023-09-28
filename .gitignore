@@ -1,3 +1,9 @@
+# tarballs for testing
+tests/*.tar.gz
+
+# log files
+*-log.txt
+
 # Prerequisites
 *.d
 

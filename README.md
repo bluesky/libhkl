@@ -22,21 +22,20 @@ build gobject-introspection and gsl from source
 
 package | version
 --- | ---
-sha256 | `5c1766a319ef59309bd2f25994fdc1f007c6c62a3441da71373609e493a79110`
+sha256 | `b0a79417855ab358a7f1c5e08074b3e7e014b5d2e10c325d6e1328f3442bf69d`
 built on | [Docker](https://github.com/prjemian/docker-ideaspace/tree/main/hkl-3357)
-architecture | amd64
+architecture | x86_64
 OS | debian:bullseye
-`gobject-introspection` | 1.66.1-1+b1
-`libgsl-dev` | 2.6+dfsg-2
-`libcglm-dev` | 0.7.9-1
+`gobject-introspection` | 1.78.1 (built from source)
+`libgsl-dev` | 2.7 (built from source)
 
 Requirements to build a conda-forge package:
 
 ```text
-    gobject-introspection =1.66.1
-    gsl =2.6
+    gobject-introspection =1.78.1
+    gsl =2.7
     pygobject
-    python <3.10
+    python >=3.8,<3.12
 ```
 
 NOTE: `gobject-introspection =1.64` is available on conda-forge for py36-py38.
@@ -49,18 +48,18 @@ NOTE: Cannot build conda-forge package since gsl=2.7.1 not available.
 
 package | version
 --- | ---
-sha256 | `07dd725ebb668f0dd4bd23f78dc422eb1f4aa1f7cb2274e2cc76d42ce2baf768`
-built on | GitHub Actions workflow
-architecture | amd64
-OS | ubuntu-22.04
-`gobject-introspection` | 1.72.0-1
-`libgsl-dev` | 2.7.1+dfsg-3
-`libgclm-dev` | 0.8.4-3
+sha256 | `cc439eb4787b577e31a7aa7764df5143cfcded9a9fa22ac7fef7974049f1d727`
+built on | [Docker](https://github.com/prjemian/docker-ideaspace/tree/main/hkl-3357)
+architecture | x86_64
+OS | debian:bullseye
+`gobject-introspection` | 1.78.1 (built from source)
+`libgsl-dev` | 2.7 (built from source)
 
 Requirements to build a conda-forge package:
 
 ```text
-    gobject-introspection =1.72.0
-    gsl =2.7.1  <-- not available!
+    gobject-introspection =1.78.1
+    gsl =2.7
     pygobject
+    python >=3.8,<3.12
 ```

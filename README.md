@@ -18,6 +18,10 @@ The *libhkl* tarball file depends on specific versions of both
 [*gsl*](https://www.gnu.org/software/gsl/) and
 [*gobject-introspection*](https://gi.readthedocs.io/en/latest/).
 
+## Project maintainers
+
+The maintainers of this project are listed [here](./MAINTAINERS.md).
+
 ## libhkl-v5.0.0.3357-x86_64.tar.gz
 
 package | version

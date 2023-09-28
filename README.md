@@ -18,11 +18,22 @@ The *libhkl* tarball file depends on specific versions of both
 [*gsl*](https://www.gnu.org/software/gsl/) and
 [*gobject-introspection*](https://gi.readthedocs.io/en/latest/).
 
+**Contents**
+
+- [libhkl](#libhkl)
+  - [Project maintainers](#project-maintainers)
+  - [tarball files](#tarball-files)
+    - [libhkl-v5.0.0.3357-x86\_64.tar.gz](#libhkl-v5003357-x86_64targz)
+    - [libhkl-v5.0.0.3001-x86\_64.tar.gz](#libhkl-v5003001-x86_64targz)
+    - [libhkl-v5.0.0.2173-x86\_64.tar.gz](#libhkl-v5002173-x86_64targz)
+
 ## Project maintainers
 
 The maintainers of this project are listed [here](./MAINTAINERS.md).
 
-## libhkl-v5.0.0.3357-x86_64.tar.gz
+## tarball files
+
+### libhkl-v5.0.0.3357-x86_64.tar.gz
 
 package | version
 --- | ---
@@ -42,7 +53,7 @@ Packaging requirements to build a conda-forge package with this library:
     python >=3.8,<3.12
 ```
 
-## libhkl-v5.0.0.3001-x86_64.tar.gz
+### libhkl-v5.0.0.3001-x86_64.tar.gz
 
 package | version
 --- | ---
@@ -62,7 +73,7 @@ Packaging requirements to build a conda-forge package with this library:
     python >=3.8,<3.12
 ```
 
-## libhkl-v5.0.0.2173-x86_64.tar.gz
+### libhkl-v5.0.0.2173-x86_64.tar.gz
 
 package | version
 --- | ---

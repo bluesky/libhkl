@@ -1,5 +1,5 @@
 # tarballs for testing
-tests/*.tar.gz
+*.tar.gz
 
 # log files
 *-log.txt

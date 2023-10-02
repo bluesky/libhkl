@@ -10,6 +10,9 @@ GH tag | GH release | conda-forge | License
 --- | --- | --- | ---
 [![tag](https://img.shields.io/github/tag/bluesky/libhkl.svg)](https://github.com/bluesky/libhkl/tags) | [![release](https://img.shields.io/github/release/bluesky/libhkl.svg)](https://github.com/bluesky/libhkl/releases) | [![conda-forge](https://img.shields.io/conda/vn/conda-forge/hkl)](https://anaconda.org/conda-forge/hkl) | [![license: GPLv3](https://img.shields.io/badge/license-GPLv3-brightgreen)](/COPYING)
 
+NOTE: This repository is for hklpy developers and is not of general interest to
+Bluesky users.
+
 See additional information for how these [tarball
 files](https://en.wikipedia.org/wiki/Tar_(computing)) are
 [built](./builder/README.md) and [tested](./tests/README.md).

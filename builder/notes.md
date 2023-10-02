@@ -2,6 +2,11 @@
 
 Build the hkl library for use in hklpy.
 
+Additional background on the reasons for the build process used at this time is documented in:
+
+- https://github.com/bluesky/hklpy/issues/250
+- https://github.com/conda-forge/hkl-feedstock/pull/13
+
 ## Install Miniconda
 
 ```bash

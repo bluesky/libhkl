@@ -1,9 +1,7 @@
 FROM  debian:bullseye
 LABEL Name="sandbox"
 
-# ENV HKL_TAG="v5.0.0.2173"
-ENV HKL_TAG="v5.0.0.3001"
-# ENV HKL_TAG="v5.0.0.3357"
+ENV HKL_TAG="v5.0.0.3357"
 ENV GOBJECT_INTROSPECTION_TAG=1.78.1
 ENV GSL_TAG=release-2-7
 

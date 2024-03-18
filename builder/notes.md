@@ -127,3 +127,29 @@ NOTES:
 - Now, since gsl & gobject-introspection are built locally from source, could
   possibly build the libhkl tarball with appropriate HKL_TAG in a GHA workflow.
   Maybe later.  This works now.
+- 2024-03: Encountered problems building gobject-introspection now.
+
+  1. `meson` reports missing Python package `packaging`: install by pip.
+  2. Then, this error from `meson setup`:
+
+        gir/meson.build:155:22: ERROR: Requested variable "glib_unix_h" not found.
+
+     Web search turned up zero reports about this line.  Ultimately, commented
+     this line, and surrounding `if` block.  Compilation of entire project
+     completed.
+
+        cat >> "${HOME}/patch_glib2"  << EOF
+        153,157c153,157
+        <   if giounix_dep.found()
+        <     glib_files += [
+        <       glib_subproject.get_variable('glib_unix_h')
+        <     ]
+        <   endif
+        ---
+        >   # if giounix_dep.found()
+        >   #   glib_files += [
+        >   #     glib_subproject.get_variable('glib_unix_h')
+        >   #   ]
+        >   # endif
+        EOF
+        patch ./gir/meson.build "${HOME}/patch_glib2"

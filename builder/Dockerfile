@@ -1,7 +1,9 @@
 FROM  debian:bullseye
 LABEL Name="sandbox"
 
+ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
 ENV HKL_TAG="v5.0.0.3357"
+
 ENV GOBJECT_INTROSPECTION_TAG=1.78.1
 ENV GSL_TAG=release-2-7
 

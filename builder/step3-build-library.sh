@@ -3,9 +3,10 @@
 # custom build script to build the hkl library
 
 set -e
-pushd hkl
 
-apt-get install -y libcglm-dev
+pushd hkl
+echo "Checkout branch: ${HKL_TAG}"
+git checkout "${HKL_TAG}"
 
 # add version info
 sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${HKL_TAG}"'"' hkl.h
@@ -25,6 +26,7 @@ autoreconf -ivf
 
 ./configure \
     --disable-static \
+    --disable-binoculars \
     --disable-gui \
     --disable-hkl-doc \
     --enable-introspection=yes \

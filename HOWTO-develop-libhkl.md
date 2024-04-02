@@ -10,7 +10,6 @@ Current steps to compile & test `libhkl` library for `hklpy`.
 - hkl (C)
   - [source](https://repo.or.cz/hkl.git)
   - conda-forge [feedstock](https://github.com/conda-forge/hkl-feedstock)
-  - BCDA [development source](https://github.com/BCDA-APS/hkl)
 - libhkl (compiled library)
   - [source](https://github.com/bluesky/libhkl)
   - Published on conda-forge using the hkl feedstock
@@ -56,6 +55,3 @@ Here are brief instructions to develop from a branch or fork of the
   - `HKL_REPO_URL` = the URL to your clone of the `hkl` source code
   - `HKL_TAG` : the name of your branch of the `hkl` source code
   - continue from the `make build run` step, as above
-- example in [web editor](https://github.dev/BCDA-APS/hkl/tree/APS-P09-EH2-psi-fixed-mode/hkl)
-  - `ENV HKL_REPO_URL="https://github.com/BCDA-APS/hkl"`
-  - `ENV HKL_TAG="APS-P09-EH2-psi-fixed-mode"`

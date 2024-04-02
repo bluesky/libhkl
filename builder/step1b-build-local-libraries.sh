@@ -3,13 +3,28 @@
 # local builds of certain support libraries
 # gobject-introspection
 # gsl (Gnu Scientific Library)
+# inih (INI Not Invented Here)
+# cglm (Highly Optimized 2D / 3D Graphics Math (glm) for C)
 
+export CGLM_REPO=https://github.com/recp/cglm
 export GOBJECT_INTROSPECTION_REPO=https://gitlab.gnome.org/GNOME/gobject-introspection.git
 export GSL_REPO=https://git.savannah.gnu.org/git/gsl.git
+export INIH_REPO=https://github.com/benhoyt/inih.git
 
 #####################################
 ##################################### prerequisites
 #####################################
+
+cat >> "${HOME}/.bashrc"  << EOF
+#
+# add some helpful shell aliases
+alias l='ls -CF --color=auto '
+alias la='ls -A --color=auto '
+alias ll='ls -lAFh --color=auto '
+alias ls='ls --color=auto '
+alias mv='mv -i'
+alias rm='rm -i '
+EOF
 
 
 # https://gi.readthedocs.io/en/latest/build_test.html
@@ -96,3 +111,36 @@ g-ir-scanner --version
 # g-ir-scanner 1.78.1
 popd
 
+
+#####################################
+##################################### inih
+#####################################
+
+git clone "${INIH_REPO}"
+pushd inih
+git checkout "${INIH_TAG}"
+
+meson setup _build --prefix=/usr
+cd _build
+meson configure | cat  # optional, show this information
+meson compile
+meson test
+meson install
+popd
+
+
+#####################################
+##################################### cglm
+#####################################
+
+git clone "${CGLM_REPO}"
+pushd cglm
+git checkout "${CGLM_TAG}"
+
+meson setup _build --prefix=/usr
+cd _build
+meson configure | cat  # optional, show this information
+meson compile
+meson test
+meson install
+popd

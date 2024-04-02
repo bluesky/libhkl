@@ -1,8 +1,10 @@
 FROM  condaforge/mambaforge
 LABEL Name="mambaforge"
 
+# docker cp sandbox:/opt/libhkl.tar.gz ./libhkl.tar.gz
 # docker build -t libhkl/test:latest ./
-# docker run -i -t libhkl/test:latest /bin/bash
+# docker run -it libhkl/test:latest /bin/bash
+# bash /home/run-libhkl.sh
 
 USER  root
 CMD ["/bin/bash"]

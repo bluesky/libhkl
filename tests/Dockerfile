@@ -10,13 +10,25 @@ USER  root
 CMD ["/bin/bash"]
 WORKDIR /home
 
-COPY env.yml ./
+COPY resources/env.yml ./
 RUN conda env update -n base -f /home/env.yml
 
 RUN conda init bash
+RUN pip3 install ipython pyRestTable
 
-COPY install-libhkl.sh libhkl.tar.gz ./
+RUN conda create -y -n hklpy conda-forge::hklpy
+
+COPY resources/install-libhkl.sh libhkl.tar.gz ./
 RUN bash /home/install-libhkl.sh
 
-COPY run-libhkl.sh try_libhkl.py ./
+COPY \
+    resources/install_hklpy.sh \
+    resources/run-libhkl.sh \
+    resources/orientation.json \
+    resources/polar_test_libhkl.py \
+    resources/polar_test_hklpy.py \
+    resources/try_libhkl.py \
+    resources/*.patch \
+    ./
 RUN bash /home/run-libhkl.sh
+RUN bash /home/install_hklpy.sh

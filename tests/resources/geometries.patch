@@ -1,0 +1,27 @@
+31a32
+>     ~ApsPolar
+34a36
+>     ~SimulatedApsPolar
+56a59
+>     ApsPolar
+65a69
+>     SimulatedApsPolar
+82a87,92
+> class ApsPolar(Diffractometer):
+>     """APS POLAR 6-circle"""
+> 
+>     calc_class = calc.CalcApsPolar
+> 
+> 
+190a201,211
+> 
+> 
+> class SimulatedApsPolar(SimMixin, ApsPolar):
+>     """SimulatedApsPolar: APS POLAR 6-circle diffractometer"""
+> 
+>     mu = Cpt(SoftPositioner, limits=(-180, 180), init_pos=0, kind="normal")
+>     omega = Cpt(SoftPositioner, limits=(-180, 180), init_pos=0, kind="normal")
+>     chi = Cpt(SoftPositioner, limits=(-180, 180), init_pos=0, kind="normal")
+>     phi = Cpt(SoftPositioner, limits=(-180, 180), init_pos=0, kind="normal")
+>     delta = Cpt(SoftPositioner, limits=(-180, 180), init_pos=0, kind="normal")
+>     gamma = Cpt(SoftPositioner, limits=(-180, 180), init_pos=0, kind="normal")

@@ -1,0 +1,12 @@
+13a14
+>     ~CalcApsPolar
+49a51
+>     CalcApsPolar
+806a809,815
+> 
+> 
+> class CalcApsPolar(CalcRecip):
+>     """Geometry: ApsPolar"""
+> 
+>     def __init__(self, **kwargs):
+>         super().__init__("APS POLAR", **kwargs)

@@ -32,7 +32,11 @@ COPY \
     resources/orientation.json \
     resources/polar_test_libhkl.py \
     resources/polar_test_hklpy.py \
+    resources/orientation.json \
+    resources/polar_test_libhkl.py \
+    resources/polar_test_hklpy.py \
     resources/try_libhkl.py \
+    resources/*.patch \
     resources/*.patch \
     ./
 # RUN bash /home/run-libhkl.sh

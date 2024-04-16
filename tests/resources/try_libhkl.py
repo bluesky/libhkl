@@ -21,6 +21,8 @@ assert UserUnits is not None
 DefaultUnits = libhkl.UnitEnum.DEFAULT
 assert DefaultUnits is not None
 
+# ------ E4CV
+
 # -------- E4CV
 
 TEST_GEOMETRY = "E4CV"

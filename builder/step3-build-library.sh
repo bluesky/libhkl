@@ -6,7 +6,6 @@ set -e pipefail
 
 pushd hkl || exit
 echo "Checkout branch: ${HKL_TAG}"
-git config pull.rebase true
 git fetch
 git fetch
 git checkout "${HKL_TAG}"

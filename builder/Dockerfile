@@ -31,15 +31,17 @@ RUN bash ./step1b-build-local-libraries.sh
 
 
 COPY ./step2-download_source.sh ./
-ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
+# ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
+ENV HKL_REPO_URL="https://github.com/prjemian/hkl"
 RUN bash ./step2-download_source.sh
 
 
 COPY ./step3-build-library.sh ./
-ENV HKL_TAG="v5.0.0.3357"
+# ENV HKL_TAG="v5.0.0.3357"
 # ENV HKL_TAG="master"
 # ENV HKL_TAG="next"
 # ENV HKL_TAG="v5.0.0.3381"
+ENV HKL_TAG="polar-v2"
 RUN bash step3-build-library.sh
 RUN ls -lAFghR "${PREFIX}"
 

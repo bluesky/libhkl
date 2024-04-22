@@ -30,6 +30,7 @@ COPY ./step1b-build-local-libraries.sh ./
 RUN bash ./step1b-build-local-libraries.sh
 
 
+ENV CHANGE_HERE_TO_FORCE_REBUILD=1
 COPY ./step2-download_source.sh ./
 # ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
 ENV HKL_REPO_URL="https://github.com/prjemian/hkl"

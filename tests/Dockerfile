@@ -30,5 +30,5 @@ COPY \
     resources/try_libhkl.py \
     resources/*.patch \
     ./
-RUN bash /home/run-libhkl.sh
+# RUN bash /home/run-libhkl.sh
 RUN bash /home/install_hklpy.sh

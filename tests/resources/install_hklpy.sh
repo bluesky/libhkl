@@ -18,9 +18,9 @@ python -c "from hkl.util import libhkl; print(sorted(libhkl.factories().keys()))
 
 # add support for APS POLAR to hklpy
 conda install -y ipython nano patch
-patch $CONDA_PREFIX/lib/python3.11/site-packages/hkl/__init__.py /home/__init__.patch
-patch $CONDA_PREFIX/lib/python3.11/site-packages/hkl/calc.py /home/calc.patch
-patch $CONDA_PREFIX/lib/python3.11/site-packages/hkl/geometries.py /home/geometries.patch
+patch $CONDA_PREFIX/lib/python3.1/site-packages/hkl/__init__.py /home/__init__.patch
+patch $CONDA_PREFIX/lib/python3.1/site-packages/hkl/calc.py /home/calc.patch
+patch $CONDA_PREFIX/lib/python3.1/site-packages/hkl/geometries.py /home/geometries.patch
 
 echo "SimulatedApsPolar in hklpy"
 python -c "from hkl import SimulatedApsPolar; polar = SimulatedApsPolar('', name='polar'); polar.wh()"

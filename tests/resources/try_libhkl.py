@@ -21,7 +21,7 @@ DefaultUnits = libhkl.UnitEnum.DEFAULT
 assert DefaultUnits is not None
 
 TEST_GEOMETRY = "APS POLAR"
-TEST_AXIS_LIST = "mu omega chi phi delta gamma".split()
+TEST_AXIS_LIST = "tau mu chi phi gamma delta".split()
 TEST_ENGINE = "hkl"
 TEST_MODES = """
 4-circles constant phi horizontal
@@ -35,8 +35,6 @@ lifting detector mu
 lifting detector omega
 lifting detector chi
 lifting detector phi
-psi constant
-psi constant vertical
 psi constant horizontal
 """.strip().splitlines()
 

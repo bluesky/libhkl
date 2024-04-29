@@ -11,6 +11,7 @@ ENV \
   PROMPT_DIRTRIM=3
 
 # developer tools
+ENV CHANGE_HERE_TO_FORCE_REBUILD_FROM_STEP1=1
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y  \
   less \
@@ -42,6 +43,7 @@ COPY ./step3-build-library.sh ./
 # ENV HKL_TAG="master"
 # ENV HKL_TAG="next"
 # ENV HKL_TAG="v5.0.0.3381"
+# ENV HKL_TAG="v5.0.0.3434"
 ENV HKL_TAG="polar-v2"
 RUN bash step3-build-library.sh
 RUN ls -lAFghR "${PREFIX}"

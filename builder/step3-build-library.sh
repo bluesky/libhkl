@@ -4,8 +4,10 @@
 
 set -e
 
-pushd hkl
+pushd hkl || exit
 echo "Checkout branch: ${HKL_TAG}"
+git config pull.rebase true
+git fetch
 git fetch
 git checkout "${HKL_TAG}"
 git pull
@@ -34,6 +36,6 @@ autoreconf -ivf
     --enable-introspection=yes \
     --prefix="${PREFIX}"
 
-make -j ${CPU_COUNT}
+make -j "${CPU_COUNT:-1}"
 make install
-popd
+popd || exit

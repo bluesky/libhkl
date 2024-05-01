@@ -41,35 +41,20 @@ apt-get install -y \
 #####################################
 
 git clone "${GSL_REPO}"
-pushd gsl
+pushd gsl || exit
 git checkout "${GSL_TAG}"
 
 bash autogen.sh
 ./configure --prefix /usr && make && make install
-popd
+popd || exit
 
 #####################################
 ##################################### gobject-introspection
 #####################################
 
 git clone "${GOBJECT_INTROSPECTION_REPO}"
-pushd gobject-introspection
+pushd gobject-introspection || exit
 git checkout "${GOBJECT_INTROSPECTION_TAG}"
-
-# meson setup _build
-# FIXME: This failed
-#
-# root@f468fa3b3778:/opt/gobject-introspection# !meson
-# meson setup _build
-# The Meson build system
-# Version: 0.56.2
-# Source dir: /opt/gobject-introspection
-# Build dir: /opt/gobject-introspection/_build
-# Build type: native build
-
-# meson.build:1:0: ERROR: Meson version is 0.56.2 but project requires >= 0.60.0
-
-# A full log can be found at /opt/gobject-introspection/_build/meson-logs/meson-log.txt
 
 # meson is Python code, install a newer version from PyPI via pip
 # First, need pip
@@ -98,7 +83,7 @@ EOF
 patch ./gir/meson.build "${HOME}/patch_glib2"
 
 meson setup _build --prefix=/usr
-cd _build
+cd _build || exit
 meson configure | cat  # optional, show this information
 meson compile
 meson test
@@ -109,7 +94,7 @@ which g-ir-scanner
 # export LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu/
 g-ir-scanner --version
 # g-ir-scanner 1.78.1
-popd
+popd || exit
 
 
 #####################################
@@ -117,16 +102,16 @@ popd
 #####################################
 
 git clone "${INIH_REPO}"
-pushd inih
+pushd inih || exit
 git checkout "${INIH_TAG}"
 
 meson setup _build --prefix=/usr
-cd _build
+cd _build || exit
 meson configure | cat  # optional, show this information
 meson compile
 meson test
 meson install
-popd
+popd || exit
 
 
 #####################################
@@ -134,13 +119,13 @@ popd
 #####################################
 
 git clone "${CGLM_REPO}"
-pushd cglm
+pushd cglm || exit
 git checkout "${CGLM_TAG}"
 
 meson setup _build --prefix=/usr
-cd _build
+cd _build || exit
 meson configure | cat  # optional, show this information
 meson compile
 meson test
 meson install
-popd
+popd || exit

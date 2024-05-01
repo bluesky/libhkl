@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e pipefail
+
 # local builds of certain support libraries
 # gobject-introspection
 # gsl (Gnu Scientific Library)

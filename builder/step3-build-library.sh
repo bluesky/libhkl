@@ -2,7 +2,7 @@
 
 # custom build script to build the hkl library
 
-set -e
+set -e pipefail
 
 pushd hkl || exit
 echo "Checkout branch: ${HKL_TAG}"

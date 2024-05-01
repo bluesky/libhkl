@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e pipefail
+
 # Install required packages for building the hkl libraries.
 # OS: Debian/ubuntu/...
 

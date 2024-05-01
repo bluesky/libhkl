@@ -66,7 +66,7 @@ meson --version  # 1.2.1 (on 2093-09-26)
 # gir/meson.build:155:22: ERROR: Requested variable "glib_unix_h" not found.
 # FIX: Comment out the code lines around this statement!
 # root@b0b5d797a6ee:/tmp# diff /tmp/gobject-introspection/gir/meson.build /home/gobject-introspection/gir/meson.build 
-cat >> "${HOME}/patch_glib2"  << EOF
+cat > "${HOME}/patch_glib2"  << EOF
 153,157c153,157
 <   if giounix_dep.found()
 <     glib_files += [

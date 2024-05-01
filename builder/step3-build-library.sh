@@ -6,7 +6,10 @@ set -e
 
 pushd hkl || exit
 echo "Checkout branch: ${HKL_TAG}"
+git config pull.rebase true
+git fetch
 git checkout "${HKL_TAG}"
+git pull origin "${HKL_TAG}"
 
 # add version info
 sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${HKL_TAG}"'"' hkl.h
@@ -32,6 +35,6 @@ autoreconf -ivf
     --enable-introspection=yes \
     --prefix="${PREFIX}"
 
-make -j "${CPU_COUNT}"
+make -j "${CPU_COUNT:-1}"
 make install
 popd || exit

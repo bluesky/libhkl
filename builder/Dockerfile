@@ -11,6 +11,7 @@ ENV \
   PROMPT_DIRTRIM=3
 
 # developer tools
+ENV CHANGE_HERE_TO_FORCE_REBUILD_FROM_STEP1=1
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y  \
   less \
@@ -30,6 +31,7 @@ COPY ./step1b-build-local-libraries.sh ./
 RUN bash ./step1b-build-local-libraries.sh
 
 
+ENV CHANGE_HERE_TO_FORCE_REBUILD=1
 COPY ./step2-download_source.sh ./
 ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
 RUN bash ./step2-download_source.sh
@@ -39,7 +41,6 @@ COPY ./step3-build-library.sh ./
 ENV HKL_TAG="v5.0.0.3357"
 # ENV HKL_TAG="master"
 # ENV HKL_TAG="next"
-# ENV HKL_TAG="v5.0.0.3381"
 RUN bash step3-build-library.sh
 RUN ls -lAFghR "${PREFIX}"
 

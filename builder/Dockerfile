@@ -1,12 +1,6 @@
 FROM  debian:bullseye
 LABEL Name="sandbox"
 
-ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
-ENV HKL_TAG="v5.0.0.3357"
-
-ENV GOBJECT_INTROSPECTION_TAG=1.78.1
-ENV GSL_TAG=release-2-7
-
 USER  root
 WORKDIR /home
 CMD ["/bin/bash"]
@@ -27,13 +21,25 @@ ENV PREFIX=/opt/hkl
 COPY ./step1-install-requirements.sh ./
 RUN bash ./step1-install-requirements.sh
 
+ENV CGLM_TAG=v0.9.4
+ENV GOBJECT_INTROSPECTION_TAG=1.78.1
+ENV GSL_TAG=release-2-7
+ENV INIH_TAG=r58
+
 COPY ./step1b-build-local-libraries.sh ./
 RUN bash ./step1b-build-local-libraries.sh
 
+
 COPY ./step2-download_source.sh ./
+ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
 RUN bash ./step2-download_source.sh
 
+
 COPY ./step3-build-library.sh ./
+ENV HKL_TAG="v5.0.0.3357"
+# ENV HKL_TAG="master"
+# ENV HKL_TAG="next"
+# ENV HKL_TAG="v5.0.0.3381"
 RUN bash step3-build-library.sh
 RUN ls -lAFghR "${PREFIX}"
 

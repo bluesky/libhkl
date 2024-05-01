@@ -10,7 +10,8 @@ USER  root
 CMD ["/bin/bash"]
 WORKDIR /home
 
-ENV CHANGE_HERE_TO_FORCE_REBUILD_FROM_STEP1=1
+# Increment the value to force a rebuild from this point.
+ENV FORCE_REBUILD_FROM_STEP1=29
 COPY resources/env.yml ./
 RUN conda env update -n base -f /home/env.yml
 

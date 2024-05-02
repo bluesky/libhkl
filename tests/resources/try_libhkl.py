@@ -23,8 +23,6 @@ assert DefaultUnits is not None
 
 # ------ E4CV
 
-# -------- E4CV
-
 TEST_GEOMETRY = "E4CV"
 print(f"Testing geometry {TEST_GEOMETRY}")
 TEST_AXIS_LIST = "omega chi phi tth".split()

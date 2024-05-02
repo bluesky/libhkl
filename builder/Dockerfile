@@ -14,6 +14,9 @@ ENV \
 # Change (increment) this value to force a rebuild from this point.
 # Value is irrelevant, only that it changes.
 ENV FORCE_REBUILD_FROM_STEP1=21
+# Change (increment) this value to force a rebuild from this point.
+# Value is irrelevant, only that it changes.
+ENV FORCE_REBUILD_FROM_STEP1=21
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y  \
   less \

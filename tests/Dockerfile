@@ -12,18 +12,17 @@ WORKDIR /home
 
 # Increment the value to force a rebuild from this point.
 ENV FORCE_REBUILD_FROM_STEP1=29
-COPY resources/env.yml ./
+# Increment the value to force a rebuild from this point.
+ENV FORCE_REBUILD_FROM_STEP1=29
+COPY resources/resources/env.yml ./
 RUN conda env update -n base -f /home/env.yml
 
 RUN conda init bash
 RUN pip3 install ipython pyRestTable
 
 RUN conda create -y -n hklpy conda-forge::hklpy
-RUN pip3 install ipython pyRestTable
 
-RUN conda create -y -n hklpy conda-forge::hklpy
-
-COPY resources/resources/install-libhkl.sh libhkl.tar.gz ./
+COPY resources/install-libhkl.sh libhkl.tar.gz ./
 RUN bash /home/install-libhkl.sh
 
 COPY \

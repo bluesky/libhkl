@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e pipefail
+
 echo "Clone repo from: ${HKL_REPO_URL}"
 git clone "${HKL_REPO_URL}"
 

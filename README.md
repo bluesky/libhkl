@@ -39,7 +39,7 @@ The maintainers of this project are listed [here](./MAINTAINERS.md).
 
 package | version
 --- | ---
-sha256 | `31123185188e5cf11683f483da583fa1bd272914`
+sha256 | `8565ac5c45d37f9062681ed74b218e0c85360d82e4240d1c7e9af998f0b64147`
 built on | [Docker](https://github.com/bluesky/libhkl/tree/main/builder)
 architecture | x86_64
 OS | debian:bullseye

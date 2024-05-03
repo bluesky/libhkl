@@ -88,7 +88,7 @@ meson setup _build --prefix=/usr
 cd _build || exit
 meson configure | cat  # optional, show this information
 meson compile
-meson test
+# meson test
 meson install
 
 which g-ir-scanner

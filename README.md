@@ -26,7 +26,7 @@ The *libhkl* tarball file depends on specific versions of both
 - [libhkl](#libhkl)
   - [Project maintainers](#project-maintainers)
   - [tarball files](#tarball-files)
-    - [libhkl-v5.0.0.3357-x86\_64.tar.gz](#libhkl-v5003357-x86_64targz)
+    - [libhkl-v5.0.0.3434-x86\_64.tar.gz](#libhkl-v5003434-x86_64targz)
     - [Releases](#releases)
 
 ## Project maintainers
@@ -35,11 +35,11 @@ The maintainers of this project are listed [here](./MAINTAINERS.md).
 
 ## tarball files
 
-### libhkl-v5.0.0.3357-x86_64.tar.gz
+### libhkl-v5.0.0.3434-x86_64.tar.gz
 
 package | version
 --- | ---
-sha256 | `cc439eb4787b577e31a7aa7764df5143cfcded9a9fa22ac7fef7974049f1d727`
+sha256 | `31123185188e5cf11683f483da583fa1bd272914`
 built on | [Docker](https://github.com/bluesky/libhkl/tree/main/builder)
 architecture | x86_64
 OS | debian:bullseye
@@ -52,7 +52,7 @@ Packaging requirements to build a conda-forge package with this library:
     gobject-introspection =1.78.1
     gsl =2.7
     pygobject
-    python >=3.8,<3.12
+    python >=3.8,<3.13
 ```
 
 ### Releases
@@ -61,6 +61,7 @@ See release details for more information.
 
 release | tarball
 --- | ---
+[v1.2.1](https://github.com/bluesky/libhkl/releases/tag/v1.2.1) | `libhkl-v5.0.0.3434-x86_64.tar.gz`
 [v1.2.0](https://github.com/bluesky/libhkl/releases/tag/v1.2.0) | `libhkl-v5.0.0.3357-x86_64.tar.gz`
 [v1.1.0](https://github.com/bluesky/libhkl/releases/tag/v1.1.0) | `libhkl-v5.0.0.3001-x86_64.tar.gz`
 [v1.0.0](https://github.com/bluesky/libhkl/releases/tag/v1.0.0) | `libhkl-v5.0.0.2173-x86_64.tar.gz`

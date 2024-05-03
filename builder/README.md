@@ -11,12 +11,13 @@ The specific versions to be built are configured in the [Dockerfile](./Dockerfil
 
 ```dockerfile
 # ENV HKL_TAG="v5.0.0.3001"
-ENV HKL_TAG="v5.0.0.3357"
+ENV HKL_TAG="v5.0.0.3434"
 ENV GOBJECT_INTROSPECTION_TAG=1.78.1
 ENV GSL_TAG=release-2-7
 ```
 
-This configuration is for *hkl* v5.0.0.3357.
+This configuration is for *hkl* (**v5.0.0.3434**)[
+https://repo.or.cz/hkl.git/shortlog/refs/tags/v5.0.0.3434].
 
 The build process is run with: `make build`.
 
@@ -28,7 +29,9 @@ once you have copied the tarball file.
 The container runs with the name `sandbox`. The tarball can be copied from the
 running container with this command on the host workstation:
 
-    docker cp sandbox:/opt/libhkl.tar.gz ./libhkl.tar.gz
+```bash
+docker cp sandbox:/opt/libhkl.tar.gz ./libhkl.tar.gz
+```
 
 ## Details
 
@@ -45,7 +48,8 @@ program](../tests/try_libhkl.py):
 import gi  # gobject-introspection, to access libhkl
 gi.require_version("Hkl", "5.0")
 from gi.repository import Hkl as libhkl
-libhkl.VERSION
+print(f"{libhkl.VERSION=}")
+print(f"Hkl major version: {libhkl._version}")
 ```
 
 Additional [notes](./notes.md) were recorded while developing this procedure
@@ -66,7 +70,7 @@ Summary conclusions:
   be identical** in both the build environment (here) and in the Python
   environment as a conda-forge package.
 - The versions of pre-built libraries for *gsl*,  *gobject-introspection*, and
-  others used to build *hkl* from source are limited  with each Linux OS
+  others used to build *hkl* from source are limited with each Linux OS
   distribution and usually do not match versions available as conda-forge
   packages.  Specifically, the current range of Python versions may not be
   supported.
@@ -87,7 +91,10 @@ gobject-introspection version | Python version
 1.64.1 | py36 - py38
 1.66.1 | py36 - py39
 1.72.0 | py37 - py310
-1.78.1 | py38 - py311
+1.78.1 | py38 - py312
+1.80.1 | py38 - py312
+
+Nothing yet for Python 3.13.
 
 ## Example build log
 

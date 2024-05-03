@@ -40,7 +40,8 @@ RUN bash ./step2-download_source.sh
 
 
 COPY ./step3-build-library.sh ./
-ENV HKL_TAG="v5.0.0.3357"
+# pick latest tag from https://repo.or.cz/hkl.git
+ENV HKL_TAG="v5.0.0.3434"
 # ENV HKL_TAG="master"
 # ENV HKL_TAG="next"
 RUN bash step3-build-library.sh

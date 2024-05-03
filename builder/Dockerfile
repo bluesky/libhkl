@@ -13,7 +13,7 @@ ENV \
 # developer tools
 # Change (increment) this value to force a rebuild from this point.
 # Value is irrelevant, only that it changes.
-ENV FORCE_REBUILD_FROM_STEP1=21
+ENV FORCE_REBUILD_FROM_STEP1=22
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y  \
   less \
@@ -35,14 +35,19 @@ RUN bash ./step1b-build-local-libraries.sh
 # similar to FORCE_REBUILD_FROM_STEP1 (above)
 ENV FORCE_REBUILD_FROM_HERE=33
 COPY ./step2-download_source.sh ./
-ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
+# # ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
+ENV HKL_REPO_URL="https://github.com/prjemian/hkl"
+ENV HKL_REPO_URL="https://github.com/prjemian/hkl"
 RUN bash ./step2-download_source.sh
 
 
 COPY ./step3-build-library.sh ./
-ENV HKL_TAG="v5.0.0.3357"
+# ENV HKL_TAG="v5.0.0.3357"
 # ENV HKL_TAG="master"
 # ENV HKL_TAG="next"
+# ENV HKL_TAG="v5.0.0.3381"
+# ENV HKL_TAG="v5.0.0.3434"
+ENV HKL_TAG="polar-v2"
 RUN bash step3-build-library.sh
 RUN ls -lAFghR "${PREFIX}"
 

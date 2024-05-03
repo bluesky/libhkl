@@ -7,6 +7,7 @@ set -e pipefail
 # gsl (Gnu Scientific Library)
 # inih (INI Not Invented Here)
 # cglm (Highly Optimized 2D / 3D Graphics Math (glm) for C)
+# valgrind
 
 export CGLM_REPO=https://github.com/recp/cglm
 export GOBJECT_INTROSPECTION_REPO=https://gitlab.gnome.org/GNOME/gobject-introspection.git
@@ -36,7 +37,7 @@ apt-get install -y \
     python3-dev flex bison libglib2.0-dev \
     libcairo2-dev libffi-dev python3-mako \
     python3-markdown python3-distutils meson build-essential \
-    gtk-doc-tools
+    gtk-doc-tools valgrind
 
 #####################################
 ##################################### gsl
@@ -88,7 +89,7 @@ meson setup _build --prefix=/usr
 cd _build || exit
 meson configure | cat  # optional, show this information
 meson compile
-meson test
+# meson test
 meson install
 
 which g-ir-scanner

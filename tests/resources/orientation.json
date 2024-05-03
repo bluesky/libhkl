@@ -1,0 +1,258 @@
+{
+    "geometry": "PETRA3 P09 EH2",
+    "engine": "hkl",
+    "library": "gi.repository.Hkl",
+    "mode": "4-circles constant phi horizontal",
+    "canonical_axes": [
+      "mu",
+      "omega",
+      "chi",
+      "phi",
+      "delta",
+      "gamma"
+    ],
+    "real_axes": [
+      "mu",
+      "omega",
+      "chi",
+      "phi",
+      "delta",
+      "gamma"
+    ],
+    "reciprocal_axes": [
+      "h",
+      "k",
+      "l"
+    ],
+    "constraints": {
+      "mu": {
+        "low_limit": -180.0,
+        "high_limit": 180.0,
+        "value": 0.0,
+        "fit": true
+      },
+      "omega": {
+        "low_limit": -180.0,
+        "high_limit": 180.0,
+        "value": 23.650000000000002,
+        "fit": true
+      },
+      "chi": {
+        "low_limit": -180.0,
+        "high_limit": 180.0,
+        "value": -45.0,
+        "fit": true
+      },
+      "phi": {
+        "low_limit": -180.0,
+        "high_limit": 180.0,
+        "value": 0.0,
+        "fit": true
+      },
+      "delta": {
+        "low_limit": -180.0,
+        "high_limit": 180.0,
+        "value": 47.29,
+        "fit": true
+      },
+      "gamma": {
+        "low_limit": -180.0,
+        "high_limit": 180.0,
+        "value": 0.0,
+        "fit": true
+      }
+    },
+    "samples": {
+      "main": {
+        "name": "main",
+        "lattice": {
+          "a": 5.43,
+          "b": 5.43,
+          "c": 5.43,
+          "alpha": 90.0,
+          "beta": 90.0,
+          "gamma": 90.0
+        },
+        "reflections": [],
+        "UB": [
+          [
+            1.1571243659630914,
+            -7.085343254960553e-17,
+            -7.085343254960553e-17
+          ],
+          [
+            0.0,
+            1.1571243659630914,
+            -7.085343254960553e-17
+          ],
+          [
+            0.0,
+            0.0,
+            1.1571243659630914
+          ]
+        ],
+        "U": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      "Si": {
+        "name": "Si",
+        "lattice": {
+          "a": 5.43,
+          "b": 5.43,
+          "c": 5.43,
+          "alpha": 90.0,
+          "beta": 90.0,
+          "gamma": 90.0
+        },
+        "reflections": [
+          {
+            "reflection": {
+              "h": 0.0,
+              "k": 0.0,
+              "l": 2.0
+            },
+            "position": {
+              "mu": 0.0,
+              "omega": 29.999999999999996,
+              "chi": -90.0,
+              "phi": 0.0,
+              "delta": 59.99999999999999,
+              "gamma": 0.0
+            },
+            "wavelength": 1.54,
+            "orientation_reflection": false,
+            "flag": 1
+          },
+          {
+            "reflection": {
+              "h": 2.0,
+              "k": 0.0,
+              "l": 0.0
+            },
+            "position": {
+              "mu": 0.0,
+              "omega": 29.999999999999996,
+              "chi": 0.0,
+              "phi": 0.0,
+              "delta": 59.99999999999999,
+              "gamma": 0.0
+            },
+            "wavelength": 1.54,
+            "orientation_reflection": false,
+            "flag": 1
+          },
+          {
+            "reflection": {
+              "h": 0.0,
+              "k": 0.0,
+              "l": 2.0
+            },
+            "position": {
+              "mu": 0.0,
+              "omega": 16.48,
+              "chi": -90.0,
+              "phi": 0.0,
+              "delta": 32.95,
+              "gamma": 0.0
+            },
+            "wavelength": 1.54,
+            "orientation_reflection": true,
+            "flag": 1
+          },
+          {
+            "reflection": {
+              "h": 2.0,
+              "k": 0.0,
+              "l": 0.0
+            },
+            "position": {
+              "mu": 0.0,
+              "omega": 16.48,
+              "chi": 0.0,
+              "phi": 0.0,
+              "delta": 32.95,
+              "gamma": 0.0
+            },
+            "wavelength": 1.54,
+            "orientation_reflection": false,
+            "flag": 1
+          },
+          {
+            "reflection": {
+              "h": 2.0,
+              "k": 0.0,
+              "l": 2.0
+            },
+            "position": {
+              "mu": 0.0,
+              "omega": 23.650000000000002,
+              "chi": -45.0,
+              "phi": 0.0,
+              "delta": 47.29,
+              "gamma": 0.0
+            },
+            "wavelength": 1.54,
+            "orientation_reflection": true,
+            "flag": 1
+          }
+        ],
+        "UB": [
+          [
+            4.182651907898542e-05,
+            -1.1571243608011377,
+            0.00010097815007728337
+          ],
+          [
+            1.1571243652071408,
+            4.1826519238178166e-05,
+            2.2205448803532294e-16
+          ],
+          [
+            -3.650052665052858e-09,
+            0.00010097815001124338,
+            1.1571243615570885
+          ]
+        ],
+        "U": [
+          [
+            3.614695214215163e-05,
+            -0.9999999955389811,
+            8.726646248881549e-05
+          ],
+          [
+            0.9999999993466989,
+            3.614695227978904e-05,
+            2.5313656015746535e-16
+          ],
+          [
+            -3.1544169083457732e-09,
+            8.726646243180421e-05,
+            0.9999999961922823
+          ]
+        ]
+      }
+    },
+    "name": "diffract",
+    "datetime": "2024-04-06 19:15:15.414158",
+    "wavelength_angstrom": 1.54,
+    "energy_keV": 8.050921974025975,
+    "hklpy_version": "0.0.0",
+    "library_version": "v5.0.0.3357",
+    "python_class": "FourCircleDiffractometer",
+    "other": {}
+  }

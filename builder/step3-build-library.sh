@@ -6,10 +6,10 @@ set -e pipefail
 
 pushd hkl || exit
 echo "Checkout branch: ${HKL_TAG}"
-git config pull.rebase true
+git fetch
 git fetch
 git checkout "${HKL_TAG}"
-git pull origin "${HKL_TAG}"
+git pull
 
 # add version info
 sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${HKL_TAG}"'"' hkl.h

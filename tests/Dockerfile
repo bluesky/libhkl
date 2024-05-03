@@ -12,6 +12,8 @@ WORKDIR /home
 
 # Increment the value to force a rebuild from this point.
 ENV FORCE_REBUILD_FROM_STEP1=29
+# Increment the value to force a rebuild from this point.
+ENV FORCE_REBUILD_FROM_STEP1=29
 COPY resources/env.yml ./
 RUN conda env update -n base -f /home/env.yml
 
@@ -26,8 +28,16 @@ RUN bash /home/install-libhkl.sh
 COPY \
     resources/install_hklpy.sh \
     resources/run-libhkl.sh \
+    resources/orientation.json \
+    resources/polar_test_libhkl.py \
+    resources/polar_test_hklpy.py \
+    resources/orientation.json \
+    resources/polar_test_libhkl.py \
+    resources/polar_test_hklpy.py \
     resources/try_libhkl.py \
+    resources/*.patch \
+    resources/*.patch \
     ./
 
-# RUN bash /home/run-libhkl.sh
+RUN bash /home/run-libhkl.sh
 RUN bash /home/install_hklpy.sh

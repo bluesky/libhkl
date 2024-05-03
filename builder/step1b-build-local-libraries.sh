@@ -12,6 +12,9 @@ export CGLM_REPO=https://github.com/recp/cglm
 export GOBJECT_INTROSPECTION_REPO=https://gitlab.gnome.org/GNOME/gobject-introspection.git
 export GSL_REPO=https://git.savannah.gnu.org/git/gsl.git
 export INIH_REPO=https://github.com/benhoyt/inih.git
+export VALGRIND_REPO="https://sourceware.org/git/valgrind.git"
+# export VALGRIND_TAG="master"
+export VALGRIND_TAG="VALGRIND_3_17_0"
 
 #####################################
 ##################################### prerequisites
@@ -48,6 +51,20 @@ git checkout "${GSL_TAG}"
 
 bash autogen.sh
 ./configure --prefix /usr && make && make install
+popd || exit
+
+#####################################
+##################################### valgrind
+#####################################
+
+git clone "${VALGRIND_REPO}"
+pushd valgrind || exit
+git checkout "${VALGRIND_TAG}"
+
+./autogen.sh
+./configure --prefix=/usr
+make
+make install
 popd || exit
 
 #####################################

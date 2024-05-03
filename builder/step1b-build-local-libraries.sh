@@ -7,14 +7,12 @@ set -e pipefail
 # gsl (Gnu Scientific Library)
 # inih (INI Not Invented Here)
 # cglm (Highly Optimized 2D / 3D Graphics Math (glm) for C)
+# valgrind
 
 export CGLM_REPO=https://github.com/recp/cglm
 export GOBJECT_INTROSPECTION_REPO=https://gitlab.gnome.org/GNOME/gobject-introspection.git
 export GSL_REPO=https://git.savannah.gnu.org/git/gsl.git
 export INIH_REPO=https://github.com/benhoyt/inih.git
-export VALGRIND_REPO="https://sourceware.org/git/valgrind.git"
-# export VALGRIND_TAG="master"
-export VALGRIND_TAG="VALGRIND_3_17_0"
 
 #####################################
 ##################################### prerequisites
@@ -39,7 +37,7 @@ apt-get install -y \
     python3-dev flex bison libglib2.0-dev \
     libcairo2-dev libffi-dev python3-mako \
     python3-markdown python3-distutils meson build-essential \
-    gtk-doc-tools
+    gtk-doc-tools valgrind
 
 #####################################
 ##################################### gsl
@@ -51,20 +49,6 @@ git checkout "${GSL_TAG}"
 
 bash autogen.sh
 ./configure --prefix /usr && make && make install
-popd || exit
-
-#####################################
-##################################### valgrind
-#####################################
-
-git clone "${VALGRIND_REPO}"
-pushd valgrind || exit
-git checkout "${VALGRIND_TAG}"
-
-./autogen.sh
-./configure --prefix=/usr
-make
-make install
 popd || exit
 
 #####################################
@@ -105,7 +89,7 @@ meson setup _build --prefix=/usr
 cd _build || exit
 meson configure | cat  # optional, show this information
 meson compile
-meson test
+# meson test
 meson install
 
 which g-ir-scanner

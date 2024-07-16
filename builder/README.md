@@ -52,8 +52,8 @@ print(f"{libhkl.VERSION=}")
 print(f"Hkl major version: {libhkl._version}")
 ```
 
-Additional [notes](./notes.md) were recorded while developing this procedure
-to build the *libhkl* tarball file(s).
+Additional [notes](./notes-build.md) were recorded while developing this
+procedure to build the *libhkl* tarball file(s).
 
 Summary conclusions:
 

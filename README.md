@@ -10,17 +10,8 @@ GH tag | GH release | conda-forge | License
 --- | --- | --- | ---
 [![tag](https://img.shields.io/github/tag/bluesky/libhkl.svg)](https://github.com/bluesky/libhkl/tags) | [![release](https://img.shields.io/github/release/bluesky/libhkl.svg)](https://github.com/bluesky/libhkl/releases) | [![conda-forge](https://img.shields.io/conda/vn/conda-forge/hkl)](https://anaconda.org/conda-forge/hkl) | [![license: GPLv3](https://img.shields.io/badge/license-GPLv3-brightgreen)](/COPYING)
 
-## **libhkl** Notes
-* [release overview](./release_table.md)
-* [release details](https://github.com/bluesky/libhkl/releases)
-* [project maintainers](./MAINTAINERS.md)
-* [build](./builder/README.md)
-* requires specific versions of
-  * [*cglm*](https://github.com/recp/cglm)
-  * [*gsl*](https://www.gnu.org/software/gsl/)
-  * [*gobject-introspection*](https://gi.readthedocs.io/en/latest/)
-  * [*inih*(https://github.com/benhoyt/inih)]
-* [tests](./tests/README.md)
+* [project details](./notes.md)
 
-This repository is for **hklpy** developers and is not of general interest to
-Bluesky users.
+This repository is for **hklpy** *developers*. Diffractometer *users* are
+referred to [*hklpy*](https://blueskyproject.io/hklpy/) for guidance with
+the [Bluesky Framework](https://blueskyproject.io).

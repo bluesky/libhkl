@@ -47,7 +47,7 @@ pushd gsl || exit
 git checkout "${GSL_TAG}"
 
 bash autogen.sh
-./configure --prefix /usr && make && make install
+./configure --prefix /usr --disable-static && make && make install
 popd || exit
 
 #####################################

@@ -32,7 +32,7 @@ EOF
 
 # https://gi.readthedocs.io/en/latest/build_test.html
 # as the docs say ...
-apt-get install -y \
+apt-get update -y && apt-get install -y \
     pkg-config \
     python3-dev flex bison libglib2.0-dev \
     libcairo2-dev libffi-dev python3-mako \

@@ -3,6 +3,7 @@
 
 # log files
 *-log.txt
+*.log
 
 # Prerequisites
 *.d

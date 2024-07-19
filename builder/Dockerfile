@@ -12,6 +12,11 @@ USER  root
 WORKDIR /home
 CMD ["/bin/bash"]
 
+ENV HKL_GIT_URL=https://repo.or.cz/hkl.git
+ENV HKL_TAG=master
+# ENV HKL_TAG=v5.0.0.3434
+# ENV HKL_TAG=v5.0.0.3462
+
 # ------------------------------ docker developer UI
 ENV \
   EDITOR="nano" \
@@ -20,9 +25,6 @@ ENV \
 RUN echo "alias ll='ls -lAFh '" >> /root/.bashrc
 RUN echo "alias ls='ls --color=auto '" >> /root/.bashrc
 
-ENV HKL_TAG=master
-# ENV HKL_TAG=v5.0.0.3434
-# ENV HKL_TAG=v5.0.0.3462
 ENV PREFIX=/opt/hkl
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
@@ -43,26 +45,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
   python3-full python3-dev \
   libglib2.0-dev \
   wget \
-  libgsl-dev libgslcblas0 libgirepository1.0-dev gobject-introspection
+  libgsl-dev libgslcblas0 libgirepository1.0-dev gobject-introspection \
+  gtk-doc-tools
 
-# gsl >= 1.12    (lib -- required)		http://www.gnu.org/software/gsl/
-# gtkmm >= 2.18  (gui -- optional)		http://www.gtkmm.org
-# libg3d	       (gui -- optional)		http://automagically.de/g3dviewer/
-# libyaml	       (gui -- optional)		http://pyyaml.org/wiki/LibYAML
-# gtk-doc >= 1.9 (doc -- optional)		http://www.gtk.org/gtk-doc/
-# povray	       (doc -- optional)		http://www.povray.org/
-# asymptote      (doc -- optional)		http://asymptote.sourceforge.net/
-
-RUN DEBIAN_FRONTEND=noninteractive \
-  apt-get install -y \
-  libgtkmm-2.4-dev \
-  libg3d0 libg3d-plugins libg3d-dev \
-  libyaml-dev \
-  gtk-doc-tools \
-  povray \
-  asymptote
-
-RUN git clone https://repo.or.cz/hkl.git
+RUN git clone "${HKL_GIT_URL}"
 
 WORKDIR hkl
 RUN git config pull.rebase true

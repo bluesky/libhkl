@@ -1,33 +1,37 @@
 FROM  condaforge/mambaforge
 LABEL Name="mambaforge"
 
-# docker cp sandbox:/opt/libhkl.tar.gz ./libhkl.tar.gz
-# docker build -t libhkl/test:latest ./
-# docker run -it libhkl/test:latest /bin/bash
-# bash /home/run-libhkl.sh
+# docker cp phoenix:/opt/libhkl.tar.gz ./tests/libhkl.tar.gz
+# docker build -t libhkl/test:latest ./tests 2>&1 | tee ./tests/build.log
+# docker run -it --rm libhkl/test:latest /bin/bash
+# python /home/try_libhkl.py
+# conda activate hklpy
+# python /home/try_libhkl.py
 
 USER  root
 CMD ["/bin/bash"]
 WORKDIR /home
 
-# Increment the value to force a rebuild from this point.
-ENV FORCE_REBUILD_FROM_STEP1=29
-COPY resources/env.yml ./
-RUN conda env update -n base -f /home/env.yml
-
+RUN conda update conda
 RUN conda init bash
 RUN pip3 install ipython pyRestTable
 
-RUN conda create -y -n hklpy conda-forge::hklpy
-
-COPY resources/install-libhkl.sh libhkl.tar.gz ./
+COPY resources/install-libhkl.sh libhkl.tar.gz resources/try_libhkl.py /home/
 RUN bash /home/install-libhkl.sh
 
-COPY \
-    resources/install_hklpy.sh \
-    resources/run-libhkl.sh \
-    resources/try_libhkl.py \
-    ./
+# NOTE!! conda-forge::gsl 2.6 installs as libgsl.so.25
+RUN conda install -y \
+    -c conda-forge \
+    gobject-introspection \
+    gsl==2.6 libcblas \
+    pygobject
 
-# RUN bash /home/run-libhkl.sh
+RUN ls -lAFgh /opt/conda/lib/ | grep libgsl
+RUN ldd /opt/conda/lib/libgsl.so
+
+COPY resources/try_libhkl.py /home/
+RUN python /home/try_libhkl.py
+
+RUN conda create -y -n hklpy conda-forge::hklpy
+COPY resources/install_hklpy.sh resources/try_hklpy.py /home/
 RUN bash /home/install_hklpy.sh

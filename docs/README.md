@@ -1,12 +1,21 @@
 # **libhkl** Notes
 
-* [release overview](./release_table.md)
-* [release details](https://github.com/bluesky/libhkl/releases)
+* [release overview](./releases/README.md)
 * [project maintainers](../MAINTAINERS.md)
 * [build](../builder/README.md)
-* requires specific versions of
-  * [*cglm*](https://github.com/recp/cglm)
-  * [*gsl*](https://www.gnu.org/software/gsl/)
-  * [*gobject-introspection*](https://gi.readthedocs.io/en/latest/)
-  * [*inih*](https://github.com/benhoyt/inih)
 * [tests](../tests/README.md)
+
+## Install Hkl pre-built from Debian backports
+
+Consider installing a prebuilt binary or library package from [Debian
+backports](https://packages.debian.org/stable-backports/ghkl).  For example:
+
+    Package: ghkl (5.0.0.3462-1~bpo12+1)
+
+Note:  Package `ghkl` does not provide `libhkl.so`.  That library
+is provided by `libhkl-dev`.  Such as:
+
+- http://http.us.debian.org/debian/pool/main/h/hkl/libhkl5_5.0.0.3462-1_amd64.deb
+- http://http.us.debian.org/debian/pool/main/h/hkl/libhkl5_5.0.0.3462-1~bpo12+1_arm64.deb
+- http://http.us.debian.org/debian/pool/main/h/hkl/libhkl-dev_5.0.0.3462-1_amd64.deb
+- http://http.us.debian.org/debian/pool/main/h/hkl/libhkl-dev_5.0.0.3462-1~bpo12+1_amd64.deb

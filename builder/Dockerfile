@@ -1,13 +1,6 @@
 FROM  debian:11
 LABEL Name="libhkl-phoenix"
 
-# docker build -t libhkl/phoenix:latest ./builder/ 2>&1 | tee ./builder/build-log.txt
-# docker run -it --rm --name=phoenix libhkl/phoenix:latest /bin/bash
-# docker cp phoenix:/opt/libhkl.tar.gz ./tests/libhkl.tar.gz
-
-# Total rebuild of docker images (very brutal steps):
-#   docker image prune -a -f && docker system prune -f
-
 USER  root
 WORKDIR /home
 CMD ["/bin/bash"]
@@ -18,14 +11,11 @@ ENV HKL_TAG=master
 # ENV HKL_TAG=v5.0.0.3462
 
 # ------------------------------ docker developer UI
-ENV \
-  EDITOR="nano" \
-  PROMPT_DIRTRIM=3
+ENV EDITOR="nano"
+ENV PROMPT_DIRTRIM=3
 
 RUN echo "alias ll='ls -lAFh '" >> /root/.bashrc
 RUN echo "alias ls='ls --color=auto '" >> /root/.bashrc
-
-ENV PREFIX=/opt/hkl
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y less
@@ -38,15 +28,19 @@ RUN DEBIAN_FRONTEND=noninteractive \
   automake \
   build-essential \
   git \
+  gobject-introspection \
+  gtk-doc-tools \
+  libcairo2-dev\
+  libgirepository1.0-dev \
+  libglib2.0-dev \
+  libgsl-dev \
+  libgslcblas0 \
   libtool \
   m4 \
   make \
   pkg-config \
   python3-full python3-dev \
-  libglib2.0-dev \
-  wget \
-  libgsl-dev libgslcblas0 libgirepository1.0-dev gobject-introspection \
-  gtk-doc-tools
+  wget
 
 RUN git clone "${HKL_GIT_URL}"
 
@@ -59,25 +53,15 @@ RUN git pull origin "${HKL_TAG}"
 # # HKL_VERSION defined with v5.0.0.3497.
 # RUN sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${HKL_TAG}"'"' hkl.h
 
-# Hkl normal build step
-# RUN bash ./autogen.sh
+RUN bash ./autogen.sh
 
-### Override Hkl autogen.sh as described...
-### The README describes some packages as optional.
-### Here, we do not need to build any of the documentation.
-### The autoreconf step will stop with errors if "gtk-doc"
-### is not installed.  These `sed` commands disable the relevant
-### lines in configure.ac.
-RUN sed -i '/gtk-doc/d' ./configure.ac \
-  && sed -i '/GTK_DOC_CHECK/d' ./configure.ac \
-  && sed -i '/Documentation/d' ./configure.ac
-RUN test -d m4 || mkdir m4
-RUN aclocal --print-ac-dir
-
-# Necessary to create the configure file.
-RUN autoreconf -ivf
-
-RUN  ./configure --prefix="${PREFIX}" --disable-static --disable-binoculars --disable-gui --disable-hkl-doc --enable-introspection=yes
+RUN  ./configure \
+  --prefix="/opt/hkl" \
+  --disable-static \
+  --disable-binoculars \
+  --disable-gui \
+  --disable-hkl-doc \
+  --enable-introspection=yes
 RUN make -j "${CPU_COUNT:-1}"
 RUN make install
 
@@ -88,8 +72,8 @@ RUN tar czf /opt/libhkl.tar.gz */
 
 # Test in venv with same code used for conda test VM.
 
-COPY try_libhkl.py /home/
 RUN python3 -m venv /opt/test
 RUN /opt/test/bin/pip install pygobject
+COPY try_libhkl.py /home/
 RUN tar xzf /opt/libhkl.tar.gz -C /usr
 RUN /opt/test/bin/python /home/try_libhkl.py

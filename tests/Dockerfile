@@ -1,13 +1,6 @@
 FROM  condaforge/mambaforge
 LABEL Name="mambaforge"
 
-# docker cp phoenix:/opt/libhkl.tar.gz ./tests/libhkl.tar.gz
-# docker build -t libhkl/test:latest ./tests 2>&1 | tee ./tests/build.log
-# docker run -it --rm libhkl/test:latest /bin/bash
-# python /home/try_libhkl.py
-# conda activate hklpy
-# python /home/try_libhkl.py
-
 USER  root
 CMD ["/bin/bash"]
 WORKDIR /home

@@ -13,11 +13,10 @@ GH tag | GH release | conda-forge | License
 This repository is for **hklpy** *developers*, to build a new version of the
 `libhkl.so` library used by [*hklpy*](https://blueskyproject.io/hklpy/) for
 diffractometer calculations and operations within the [Bluesky
-Framework](https://blueskyproject.io).
+Framework](https://blueskyproject.io).  For more details, see the project
+[documentation](./docs/README.md).
 
 ## Overview
-
-* [project details](./docs/README.md)
 
 1. Build `libhkl.tar.gz` from source using a [docker VM](./builder/Dockerfile).
 1. Test `libhkl.tar.gz` with conda using a [docker VM](./tests/Dockerfile).

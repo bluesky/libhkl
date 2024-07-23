@@ -7,8 +7,6 @@ CMD ["/bin/bash"]
 
 ENV HKL_GIT_URL=https://repo.or.cz/hkl.git
 ENV HKL_TAG=master
-# ENV HKL_TAG=v5.0.0.3434
-# ENV HKL_TAG=v5.0.0.3462
 
 # ------------------------------ docker developer UI
 ENV EDITOR="nano"
@@ -49,9 +47,6 @@ RUN git config pull.rebase true
 RUN git fetch
 RUN git checkout "${HKL_TAG}"
 RUN git pull origin "${HKL_TAG}"
-
-# # HKL_VERSION defined with v5.0.0.3497.
-# RUN sed -i '/^.*tau = 2pi.*/i #define HKL_VERSION "'"${HKL_TAG}"'"' hkl.h
 
 RUN bash ./autogen.sh
 

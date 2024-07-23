@@ -75,5 +75,5 @@ RUN tar czf /opt/libhkl.tar.gz */
 RUN python3 -m venv /opt/test
 RUN /opt/test/bin/pip install pygobject
 COPY try_libhkl.py /home/
-RUN tar xzf /opt/libhkl.tar.gz -C /usr
+RUN tar -xzf /opt/libhkl.tar.gz -C /usr
 RUN /opt/test/bin/python /home/try_libhkl.py

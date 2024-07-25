@@ -18,11 +18,17 @@ run ::
 	docker run \
 		-it \
 		--rm \
+		--net=$(NET) \
 		--name=$(REPO) \
 		$(FULLNAME) \
 		/bin/bash
 
 shell :: build run
+
+net ::
+	docker network create \
+		--driver bridge \
+		$(NET)
 
 ### Remove all unused docker images (very brutal steps)
 prune ::

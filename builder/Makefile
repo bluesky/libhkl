@@ -3,6 +3,7 @@ REPO=phoenix
 LOGFILE=build-log.txt
 TAG=latest
 LOG_DIR=.
+NET=host-bridge
 
 FULLNAME=$(ORG)/$(REPO):$(TAG)
 

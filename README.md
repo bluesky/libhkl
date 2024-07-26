@@ -22,8 +22,9 @@ You'll need docker (or equal).
 
 1. Build `libhkl.tar.gz` from source using a [docker VM](./builder/Dockerfile).
    1. Open a terminal in the root directory of this repo.
-   2. Build and run the `builder` VM: `make -C builder build run`
-   3. Leave this VM running for the next step.
+   2. Start the `host-bridge` network in docker if you have not done this already: `make -C builder net`
+   3. Build and run the `builder` VM: `make -C builder build run`
+   4. Leave this VM running for the next step.
 2. Verify there are no errors with this build.
 2. Test `libhkl.tar.gz` with conda using a [docker VM](./tests/Dockerfile).
    1. Open a separate terminal in the root directory of this repo.

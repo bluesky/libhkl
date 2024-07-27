@@ -14,6 +14,9 @@ build ::
 		2>&1 | tee -a $(LOGFILE)
 	echo "# finished: " `date -I"seconds"` | tee -a $(LOGFILE)
 
+clean ::
+	rm -f ./libhkl.tar.gz
+
 libhkl ::
 	docker cp phoenix:/opt/libhkl.tar.gz ./libhkl.tar.gz
 

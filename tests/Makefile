@@ -7,7 +7,7 @@ LOG_DIR=.
 FULLNAME=$(ORG)/$(REPO):$(TAG)
 
 build ::
-	echo "# started: " `date --iso-8601="seconds"` | tee $(LOGFILE)
+	echo "# started: " `date -I"seconds"` | tee $(LOGFILE)
 	docker build \
 		-t $(FULLNAME)  \
 		./  \

@@ -8,12 +8,12 @@ NET=host-bridge
 FULLNAME=$(ORG)/$(REPO):$(TAG)
 
 build ::
-	echo "# started: " `date --iso-8601="seconds"` | tee $(LOGFILE)
+	echo "# started: " `date -I"seconds"` | tee $(LOGFILE)
 	docker build \
 		-t $(FULLNAME)  \
 		./  \
 		2>&1 | tee -a $(LOGFILE)
-	echo "# finished: " `date --iso-8601="seconds"` | tee -a $(LOGFILE)
+	echo "# finished: " `date -I"seconds"` | tee -a $(LOGFILE)
 
 run ::
 	docker run \

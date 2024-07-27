@@ -10,58 +10,25 @@ GH tag | GH release | conda-forge | License
 --- | --- | --- | ---
 [![tag](https://img.shields.io/github/tag/bluesky/libhkl.svg)](https://github.com/bluesky/libhkl/tags) | [![release](https://img.shields.io/github/release/bluesky/libhkl.svg)](https://github.com/bluesky/libhkl/releases) | [![conda-forge](https://img.shields.io/conda/vn/conda-forge/hkl)](https://anaconda.org/conda-forge/hkl) | [![license: GPLv3](https://img.shields.io/badge/license-GPLv3-brightgreen)](/COPYING)
 
-NOTE: This repository is for hklpy developers and is not of general interest to
-Bluesky users.
+This repository is for **hklpy** *developers*, to build a new version of the
+`libhkl.so` library used by [*hklpy*](https://blueskyproject.io/hklpy/) for
+diffractometer calculations and operations within the [Bluesky
+Framework](https://blueskyproject.io).  For more details, see the project
+[documentation](./docs/README.md).
 
-See additional information for how these [tarball
-files](https://en.wikipedia.org/wiki/Tar_(computing)) are
-[built](./builder/README.md) and [tested](./tests/README.md).
+## Build the file libhkl.tar.gz
 
-The *libhkl* tarball file depends on specific versions of both
-[*gsl*](https://www.gnu.org/software/gsl/) and
-[*gobject-introspection*](https://gi.readthedocs.io/en/latest/).
+You'll need docker (or equal).
 
-**Contents**
+1. Build `libhkl.tar.gz` from source using a [docker VM](./builder/Dockerfile).
+   1. Open a terminal in the root directory of this repo.
+   2. Start the `host-bridge` network in docker if you have not done this already: `make -C builder net`
+   3. Build and run the `builder` VM: `make -C builder build run`
+   4. Leave this VM running for the next step.
+2. Verify there are no errors with this build.
+2. Test `libhkl.tar.gz` with conda using a [docker VM](./tests/Dockerfile).
+   1. Open a separate terminal in the root directory of this repo.
+   2. Build and run the `tests` VM: `make -C tests libhkl build run`
 
-- [libhkl](#libhkl)
-  - [Project maintainers](#project-maintainers)
-  - [tarball files](#tarball-files)
-    - [libhkl-v5.0.0.3434-x86\_64.tar.gz](#libhkl-v5003434-x86_64targz)
-    - [Releases](#releases)
-
-## Project maintainers
-
-The maintainers of this project are listed [here](./MAINTAINERS.md).
-
-## tarball files
-
-### libhkl-v5.0.0.3434-x86_64.tar.gz
-
-package | version
---- | ---
-sha256 | `8565ac5c45d37f9062681ed74b218e0c85360d82e4240d1c7e9af998f0b64147`
-built on | [Docker](https://github.com/bluesky/libhkl/tree/main/builder)
-architecture | x86_64
-OS | debian:bullseye
-`gobject-introspection` | 1.78.1 (built from source)
-`libgsl-dev` | 2.7 (built from source)
-
-Packaging requirements to build a conda-forge package with this library:
-
-```text
-    gobject-introspection =1.78.1
-    gsl =2.7
-    pygobject
-    python >=3.8,<3.13
-```
-
-### Releases
-
-See release details for more information.
-
-release | tarball
---- | ---
-[v1.2.1](https://github.com/bluesky/libhkl/releases/tag/v1.2.1) | `libhkl-v5.0.0.3434-x86_64.tar.gz`
-[v1.2.0](https://github.com/bluesky/libhkl/releases/tag/v1.2.0) | `libhkl-v5.0.0.3357-x86_64.tar.gz`
-[v1.1.0](https://github.com/bluesky/libhkl/releases/tag/v1.1.0) | `libhkl-v5.0.0.3001-x86_64.tar.gz`
-[v1.0.0](https://github.com/bluesky/libhkl/releases/tag/v1.0.0) | `libhkl-v5.0.0.2173-x86_64.tar.gz`
+If no errors are returned from both steps, then the new library tarball is
+available in `./tests/libhkl.tar.gz`.  At this point, you can close both of these docker VMs.

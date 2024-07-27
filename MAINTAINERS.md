@@ -3,4 +3,4 @@ this repo has the following maintainers:
 
 * Pete Jemian (@prjemian), APS
 * Max Rakitin (@mrakitin), NSLS-II
-* Ken Lauer (@klauer), LCLS
+<!-- * Ken Lauer (@klauer), LCLS -->

@@ -1,55 +1,74 @@
-FROM  debian:bullseye
-LABEL Name="sandbox"
+FROM  debian:11
+LABEL Name="libhkl-phoenix"
 
 USER  root
 WORKDIR /home
 CMD ["/bin/bash"]
 
+ENV HKL_GIT_URL=https://repo.or.cz/hkl.git
+ENV HKL_TAG=master
+
 # ------------------------------ docker developer UI
-ENV \
-  EDITOR="nano" \
-  PROMPT_DIRTRIM=3
+ENV EDITOR="nano"
+ENV PROMPT_DIRTRIM=3
 
-# developer tools
-# Change (increment) this value to force a rebuild from this point.
-# Value is irrelevant, only that it changes.
-ENV FORCE_REBUILD_FROM_STEP1=21
+RUN echo "alias ll='ls -lAFh '" >> /root/.bashrc
+RUN echo "alias ls='ls --color=auto '" >> /root/.bashrc
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update  -y \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y  \
-  less \
-  nano
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y less
 
-ENV PREFIX=/opt/hkl
+RUN DEBIAN_FRONTEND=noninteractive \
+  apt-get install -y  \
+  apt-utils \
+  autoconf \
+  autoconf-archive \
+  automake \
+  build-essential \
+  git \
+  gobject-introspection \
+  gtk-doc-tools \
+  libcairo2-dev\
+  libgirepository1.0-dev \
+  libglib2.0-dev \
+  libgsl-dev \
+  libgslcblas0 \
+  libtool \
+  m4 \
+  make \
+  pkg-config \
+  python3-full python3-dev \
+  wget
 
-COPY ./step1-install-requirements.sh ./
-RUN bash ./step1-install-requirements.sh
+RUN git clone "${HKL_GIT_URL}"
 
-ENV CGLM_TAG=v0.9.4
-ENV GOBJECT_INTROSPECTION_TAG=1.78.1
-ENV GSL_TAG=release-2-7
-ENV INIH_TAG=r58
+WORKDIR hkl
+RUN git config pull.rebase true
+RUN git fetch
+RUN git checkout "${HKL_TAG}"
+RUN git pull origin "${HKL_TAG}"
 
-COPY ./step1b-build-local-libraries.sh ./
-RUN bash ./step1b-build-local-libraries.sh
+RUN bash ./autogen.sh
 
-# similar to FORCE_REBUILD_FROM_STEP1 (above)
-ENV FORCE_REBUILD_FROM_HERE=33
-COPY ./step2-download_source.sh ./
-ENV HKL_REPO_URL="https://repo.or.cz/hkl.git"
-RUN bash ./step2-download_source.sh
-
-
-COPY ./step3-build-library.sh ./
-# pick latest tag from https://repo.or.cz/hkl.git
-ENV HKL_TAG="v5.0.0.3434"
-# ENV HKL_TAG="master"
-# ENV HKL_TAG="next"
-RUN bash step3-build-library.sh
-RUN ls -lAFghR "${PREFIX}"
+RUN  ./configure \
+  --prefix="/opt/hkl" \
+  --disable-static \
+  --disable-binoculars \
+  --disable-gui \
+  --disable-hkl-doc \
+  --enable-introspection=yes
+RUN make -j "${CPU_COUNT:-1}"
+RUN make install
 
 WORKDIR /opt/hkl
 RUN tar czf /opt/libhkl.tar.gz */
 
-RUN echo "Gnu scientific library (GSL) version: ${GSL_TAG}"
-RUN echo "gobject-introspection version: ${GOBJECT_INTROSPECTION_TAG}"
-RUN echo "HKL version: ${HKL_TAG}"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Test in venv with same code used for conda test VM.
+
+RUN python3 -m venv /opt/test
+RUN /opt/test/bin/pip install pygobject
+COPY try_libhkl.py /home/
+RUN tar -xzf /opt/libhkl.tar.gz -C /usr
+RUN /opt/test/bin/python /home/try_libhkl.py

@@ -4,7 +4,6 @@
 
 New build approach.  Simpler.  Follow the Hkl source guidance as
 much as possible.  Avoid extra complexity, for clarity.
-Similar to phoenix folder but older
 Debian 11 to get GSL 2.6 (`libgsl.so.25`) from apt.
 
 This page provides a list of GSL versions and Linux distributions.

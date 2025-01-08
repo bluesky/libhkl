@@ -1,5 +1,10 @@
 # libhkl
 
+This package is superceded by [`hkl-feedstock`](https://github.com/conda-forge/hkl-feedstock), 
+which builds *libhkl* directly from the source code.
+
+--------------
+
 Build the [*hkl*](https://repo.or.cz/hkl.git) C library (described here as
 [*libhkl*](https://people.debian.org/~picca/hkl/hkl.html#)) for
 [hklpy](https://github.com/bluesky/hklpy). Publish on
